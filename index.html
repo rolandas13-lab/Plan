@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#173f4f">
+    <meta name="description" content="Arbeitsplan für Jacek und Lukasz">
+    <title>Arbeitsplan</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <div>
+          <p class="eyebrow">Plan</p>
+          <h1>Arbeitsplan</h1>
+        </div>
+        <button class="today-button" id="todayButton" type="button">Heute</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="status-band" aria-labelledby="todayHeading">
+        <div class="status-main">
+          <p class="section-label" id="todayHeading">Heute</p>
+          <p class="today-date" id="todayDate">Wird geladen</p>
+          <div class="worker-badges" id="todayWorkers" aria-live="polite"></div>
+        </div>
+        <div class="next-change">
+          <p class="section-label">Nächster Wechsel</p>
+          <p class="change-name" id="nextWorker">Wird geladen</p>
+          <p class="change-date" id="nextDate"></p>
+        </div>
+      </section>
+
+      <section class="calendar-section" aria-labelledby="calendarHeading">
+        <div class="calendar-toolbar">
+          <div>
+            <p class="section-label">Monatsübersicht</p>
+            <h2 id="calendarHeading">Kalender</h2>
+          </div>
+          <div class="month-controls">
+            <button class="icon-button" id="previousMonth" type="button" aria-label="Vorheriger Monat" title="Vorheriger Monat">&#8592;</button>
+            <p class="month-label" id="monthLabel" aria-live="polite"></p>
+            <button class="icon-button" id="nextMonth" type="button" aria-label="Nächster Monat" title="Nächster Monat">&#8594;</button>
+          </div>
+        </div>
+
+        <div class="legend" aria-label="Farblegende">
+          <span><i class="swatch jacek"></i>Jacek</span>
+          <span><i class="swatch lukasz"></i>Lukasz</span>
+          <span><i class="swatch both"></i>Beide</span>
+        </div>
+
+        <div class="calendar" role="grid" aria-label="Arbeitskalender">
+          <div class="weekday" role="columnheader">Mo</div>
+          <div class="weekday" role="columnheader">Di</div>
+          <div class="weekday" role="columnheader">Mi</div>
+          <div class="weekday" role="columnheader">Do</div>
+          <div class="weekday" role="columnheader">Fr</div>
+          <div class="weekday" role="columnheader">Sa</div>
+          <div class="weekday" role="columnheader">So</div>
+          <div class="calendar-days" id="calendarDays"></div>
+        </div>
+      </section>
+
+      <section class="upcoming-section" aria-labelledby="upcomingHeading">
+        <div class="upcoming-heading">
+          <div>
+            <p class="section-label">Vorschau</p>
+            <h2 id="upcomingHeading">Nächste 14 Tage</h2>
+          </div>
+        </div>
+        <div class="upcoming-list" id="upcomingList"></div>
+      </section>
+    </main>
+
+    <footer>
+      <p id="dataRange"></p>
+    </footer>
+
+    <script src="./schedule-data.js"></script>
+    <script src="./app.js"></script>
+    <script data-goatcounter="https://numer-grupa.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+  </body>
+</html>
