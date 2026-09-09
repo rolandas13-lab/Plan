@@ -142,22 +142,14 @@ main {
 }
 
 .status-band {
-  display: grid;
-  grid-template-columns: minmax(0, 1.5fr) minmax(260px, 0.8fr);
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: 8px;
   overflow: hidden;
 }
 
-.status-main,
-.next-change {
+.status-main {
   padding: 26px;
-}
-
-.next-change {
-  border-left: 1px solid var(--line);
-  background: #edf4f6;
 }
 
 .today-date {
@@ -496,12 +488,7 @@ footer p {
     padding-top: 18px;
   }
 
-  .status-band {
-    grid-template-columns: 1fr;
-  }
-
   .status-main,
-  .next-change,
   .holiday-section,
   .calendar-section,
   .upcoming-section {
@@ -514,11 +501,6 @@ footer p {
 
   .holiday-shortcuts {
     grid-template-columns: 1fr;
-  }
-
-  .next-change {
-    border-top: 1px solid var(--line);
-    border-left: 0;
   }
 
   .calendar-toolbar {

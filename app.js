@@ -15,7 +15,6 @@
       language: "Język",
       todayButton: "Dzisiaj",
       today: "Dzisiaj",
-      nextChange: "Następna zmiana",
       monthOverview: "Widok miesiąca",
       calendar: "Kalendarz",
       previousMonth: "Poprzedni miesiąc",
@@ -27,8 +26,6 @@
       next14Days: "Najbliższe 14 dni",
       noEntry: "Brak wpisu",
       outsidePlan: "Poza okresem planu",
-      noFurtherChange: "Brak kolejnej zmiany",
-      planEnds: "Plan kończy się",
       planRange: "Okres planu",
       holidayLabel: "Poprzednie święta",
       holidayHeading: "Kto pracował?",
@@ -43,7 +40,6 @@
       language: "Sprache",
       todayButton: "Heute",
       today: "Heute",
-      nextChange: "Nächster Wechsel",
       monthOverview: "Monatsübersicht",
       calendar: "Kalender",
       previousMonth: "Vorheriger Monat",
@@ -55,8 +51,6 @@
       next14Days: "Nächste 14 Tage",
       noEntry: "Keine Eintragung",
       outsidePlan: "Außerhalb des Planzeitraums",
-      noFurtherChange: "Kein weiterer Wechsel",
-      planEnds: "Plan endet am",
       planRange: "Planzeitraum",
       holidayLabel: "Letzte Feiertage",
       holidayHeading: "Wer hat gearbeitet?",
@@ -78,8 +72,6 @@
   const elements = {
     todayDate: document.getElementById("todayDate"),
     todayWorkers: document.getElementById("todayWorkers"),
-    nextWorker: document.getElementById("nextWorker"),
-    nextDate: document.getElementById("nextDate"),
     monthLabel: document.getElementById("monthLabel"),
     calendarDays: document.getElementById("calendarDays"),
     upcomingList: document.getElementById("upcomingList"),
@@ -223,8 +215,7 @@
 
   function renderToday() {
     elements.todayDate.textContent = formatLong(today);
-    const currentCode = schedule.get(dateKey(today)) || "";
-    const workers = workersFor(currentCode);
+    const workers = workersFor(schedule.get(dateKey(today)) || "");
     elements.todayWorkers.replaceChildren();
 
     if (workers.length === 0) {
@@ -239,19 +230,6 @@
         badge.textContent = worker;
         elements.todayWorkers.append(badge);
       });
-    }
-
-    let change = addDays(today, 1);
-    while (change <= endDate && (schedule.get(dateKey(change)) || "") === currentCode) {
-      change = addDays(change, 1);
-    }
-
-    if (change <= endDate) {
-      elements.nextWorker.textContent = workerLabel(schedule.get(dateKey(change)) || "");
-      elements.nextDate.textContent = formatLong(change);
-    } else {
-      elements.nextWorker.textContent = t("noFurtherChange");
-      elements.nextDate.textContent = `${t("planEnds")} ${formatLong(endDate)}`;
     }
   }
 
