@@ -25,7 +25,6 @@
       preview: "Podgląd",
       next14Days: "Najbliższe 14 dni",
       noEntry: "Brak wpisu",
-      outsidePlan: "Poza okresem planu",
       planRange: "Okres planu",
       holidayLabel: "Poprzednie święta",
       holidayHeading: "Kto pracował?",
@@ -50,7 +49,6 @@
       preview: "Vorschau",
       next14Days: "Nächste 14 Tage",
       noEntry: "Keine Eintragung",
-      outsidePlan: "Außerhalb des Planzeitraums",
       planRange: "Planzeitraum",
       holidayLabel: "Letzte Feiertage",
       holidayHeading: "Wer hat gearbeitet?",
@@ -66,12 +64,10 @@
   const endDate = fromKey(data.end);
   const initialDate = today < startDate ? startDate : today > endDate ? endDate : today;
   let visibleMonth = new Date(initialDate.getFullYear(), initialDate.getMonth(), 1);
-  let selectedDateKey = "";
+  let selectedDateKey = dateKey(initialDate);
   let language = readLanguage();
 
   const elements = {
-    todayDate: document.getElementById("todayDate"),
-    todayWorkers: document.getElementById("todayWorkers"),
     monthLabel: document.getElementById("monthLabel"),
     calendarDays: document.getElementById("calendarDays"),
     upcomingList: document.getElementById("upcomingList"),
@@ -213,26 +209,6 @@
     });
   }
 
-  function renderToday() {
-    elements.todayDate.textContent = formatLong(today);
-    const workers = workersFor(schedule.get(dateKey(today)) || "");
-    elements.todayWorkers.replaceChildren();
-
-    if (workers.length === 0) {
-      const badge = document.createElement("span");
-      badge.className = "worker-badge none";
-      badge.textContent = today < startDate || today > endDate ? t("outsidePlan") : t("noEntry");
-      elements.todayWorkers.append(badge);
-    } else {
-      workers.forEach((worker) => {
-        const badge = document.createElement("span");
-        badge.className = `worker-badge ${worker.toLowerCase()}`;
-        badge.textContent = worker;
-        elements.todayWorkers.append(badge);
-      });
-    }
-  }
-
   function renderHolidayWorker(element, date) {
     const code = schedule.get(dateKey(date)) || "";
     element.className = `holiday-worker ${statusClass(code)}`;
@@ -318,7 +294,6 @@
 
   function renderAll() {
     renderStaticLanguage();
-    renderToday();
     renderHolidays();
     renderCalendar();
     renderUpcoming();
@@ -348,7 +323,7 @@
     selectedDateKey = dateKey(today);
     visibleMonth = new Date(initialDate.getFullYear(), initialDate.getMonth(), 1);
     renderCalendar();
-    document.getElementById("todayHeading").scrollIntoView({ behavior: "smooth", block: "start" });
+    document.querySelector(".calendar-section").scrollIntoView({ behavior: "smooth", block: "start" });
   });
 
   document.getElementById("easterButton").addEventListener("click", () => jumpToDate(lastEaster()));

@@ -141,65 +141,6 @@ main {
   padding: 28px 0 36px;
 }
 
-.status-band {
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-.status-main {
-  padding: 26px;
-}
-
-.today-date {
-  margin: 0 0 16px;
-  color: var(--muted);
-}
-
-.worker-badges {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  min-height: 54px;
-}
-
-.worker-badge {
-  display: inline-flex;
-  align-items: center;
-  min-height: 52px;
-  padding: 0 18px;
-  border-radius: 6px;
-  font-size: 1.35rem;
-  font-weight: 800;
-}
-
-.worker-badge.jacek {
-  background: var(--jacek);
-  color: var(--jacek-dark);
-}
-
-.worker-badge.lukasz {
-  background: var(--lukasz);
-  color: var(--lukasz-dark);
-}
-
-.worker-badge.none {
-  background: #e7eaec;
-  color: var(--muted);
-}
-
-.change-name {
-  margin: 8px 0 2px;
-  font-size: 1.35rem;
-  font-weight: 800;
-}
-
-.change-date {
-  margin: 0;
-  color: var(--muted);
-}
-
 .holiday-section,
 .calendar-section,
 .upcoming-section {
@@ -208,6 +149,10 @@ main {
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: 8px;
+}
+
+.calendar-section {
+  margin-top: 0;
 }
 
 .holiday-section {
@@ -488,7 +433,6 @@ footer p {
     padding-top: 18px;
   }
 
-  .status-main,
   .holiday-section,
   .calendar-section,
   .upcoming-section {
