@@ -1,11 +1,11 @@
 <!doctype html>
-<html lang="de">
+<html lang="pl">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#173f4f">
-    <meta name="description" content="Arbeitsplan für Jacek und Lukasz">
-    <title>Arbeitsplan</title>
+    <meta name="description" content="Grafik pracy Jacka i Lukasza">
+    <title>Grafik pracy</title>
     <link rel="stylesheet" href="./styles.css">
   </head>
   <body>
@@ -13,43 +13,68 @@
       <div class="header-inner">
         <div>
           <p class="eyebrow">Plan</p>
-          <h1>Arbeitsplan</h1>
+          <h1 data-i18n="title">Grafik pracy</h1>
         </div>
-        <button class="today-button" id="todayButton" type="button">Heute</button>
+        <div class="header-actions">
+          <div class="language-switch" role="group" aria-label="Język">
+            <button class="language-button" type="button" data-language="pl" aria-pressed="true">PL</button>
+            <button class="language-button" type="button" data-language="de" aria-pressed="false">DE</button>
+          </div>
+          <button class="today-button" id="todayButton" type="button" data-i18n="todayButton">Dzisiaj</button>
+        </div>
       </div>
     </header>
 
     <main>
       <section class="status-band" aria-labelledby="todayHeading">
         <div class="status-main">
-          <p class="section-label" id="todayHeading">Heute</p>
-          <p class="today-date" id="todayDate">Wird geladen</p>
+          <p class="section-label" id="todayHeading" data-i18n="today">Dzisiaj</p>
+          <p class="today-date" id="todayDate">Ładowanie</p>
           <div class="worker-badges" id="todayWorkers" aria-live="polite"></div>
         </div>
         <div class="next-change">
-          <p class="section-label">Nächster Wechsel</p>
-          <p class="change-name" id="nextWorker">Wird geladen</p>
+          <p class="section-label" data-i18n="nextChange">Następna zmiana</p>
+          <p class="change-name" id="nextWorker">Ładowanie</p>
           <p class="change-date" id="nextDate"></p>
+        </div>
+      </section>
+
+      <section class="holiday-section" aria-labelledby="holidayHeading">
+        <div class="holiday-heading">
+          <p class="section-label" data-i18n="holidayLabel">Poprzednie święta</p>
+          <h2 id="holidayHeading" data-i18n="holidayHeading">Kto pracował?</h2>
+        </div>
+        <div class="holiday-shortcuts">
+          <button class="holiday-button" id="easterButton" type="button">
+            <span class="holiday-name" data-i18n="lastEaster">Ostatnia Wielkanoc</span>
+            <span class="holiday-date" id="easterDate"></span>
+            <span class="holiday-worker" id="easterWorker"></span>
+          </button>
+          <button class="holiday-button" id="christmasButton" type="button">
+            <span class="holiday-name" data-i18n="lastChristmas">Ostatnie Boże Narodzenie</span>
+            <span class="holiday-date" id="christmasDate"></span>
+            <span class="holiday-worker" id="christmasWorker"></span>
+          </button>
         </div>
       </section>
 
       <section class="calendar-section" aria-labelledby="calendarHeading">
         <div class="calendar-toolbar">
           <div>
-            <p class="section-label">Monatsübersicht</p>
-            <h2 id="calendarHeading">Kalender</h2>
+            <p class="section-label" data-i18n="monthOverview">Widok miesiąca</p>
+            <h2 id="calendarHeading" data-i18n="calendar">Kalendarz</h2>
           </div>
           <div class="month-controls">
-            <button class="icon-button" id="previousMonth" type="button" aria-label="Vorheriger Monat" title="Vorheriger Monat">&#8592;</button>
+            <button class="icon-button" id="previousMonth" type="button" aria-label="Poprzedni miesiąc" title="Poprzedni miesiąc">&#8592;</button>
             <p class="month-label" id="monthLabel" aria-live="polite"></p>
-            <button class="icon-button" id="nextMonth" type="button" aria-label="Nächster Monat" title="Nächster Monat">&#8594;</button>
+            <button class="icon-button" id="nextMonth" type="button" aria-label="Następny miesiąc" title="Następny miesiąc">&#8594;</button>
           </div>
         </div>
 
-        <div class="legend" aria-label="Farblegende">
+        <div class="legend" aria-label="Legenda kolorów">
           <span><i class="swatch jacek"></i>Jacek</span>
           <span><i class="swatch lukasz"></i>Lukasz</span>
-          <span><i class="swatch both"></i>Beide</span>
+          <span><i class="swatch both"></i><span data-i18n="both">Obaj</span></span>
         </div>
 
         <div class="calendar" role="grid" aria-label="Arbeitskalender">
@@ -67,8 +92,8 @@
       <section class="upcoming-section" aria-labelledby="upcomingHeading">
         <div class="upcoming-heading">
           <div>
-            <p class="section-label">Vorschau</p>
-            <h2 id="upcomingHeading">Nächste 14 Tage</h2>
+            <p class="section-label" data-i18n="preview">Podgląd</p>
+            <h2 id="upcomingHeading" data-i18n="next14Days">Najbliższe 14 dni</h2>
           </div>
         </div>
         <div class="upcoming-list" id="upcomingList"></div>

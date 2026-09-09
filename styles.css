@@ -85,11 +85,43 @@ h2 {
 }
 
 .today-button,
+.language-button,
 .icon-button {
   border: 1px solid rgba(255, 255, 255, 0.55);
   background: transparent;
   color: #fff;
   cursor: pointer;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.language-switch {
+  display: inline-grid;
+  grid-template-columns: repeat(2, 42px);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.language-button {
+  min-height: 42px;
+  border: 0;
+  border-right: 1px solid rgba(255, 255, 255, 0.35);
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.language-button:last-child {
+  border-right: 0;
+}
+
+.language-button[aria-pressed="true"] {
+  background: #fff;
+  color: var(--header);
 }
 
 .today-button {
@@ -176,6 +208,7 @@ main {
   color: var(--muted);
 }
 
+.holiday-section,
 .calendar-section,
 .upcoming-section {
   margin-top: 28px;
@@ -183,6 +216,72 @@ main {
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: 8px;
+}
+
+.holiday-section {
+  display: grid;
+  grid-template-columns: minmax(170px, 0.45fr) minmax(0, 1.55fr);
+  gap: 24px;
+  align-items: center;
+}
+
+.holiday-shortcuts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.holiday-button {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 4px 16px;
+  min-height: 78px;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #f8fafb;
+  color: var(--ink);
+  text-align: left;
+  cursor: pointer;
+}
+
+.holiday-button:hover,
+.holiday-button:focus-visible {
+  border-color: var(--header-soft);
+  background: #edf4f6;
+}
+
+.holiday-name {
+  font-weight: 800;
+}
+
+.holiday-date {
+  grid-column: 1;
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.holiday-worker {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  align-self: center;
+  padding: 6px 9px;
+  border-radius: 5px;
+  font-weight: 800;
+}
+
+.holiday-worker.jacek {
+  background: var(--jacek);
+  color: var(--jacek-dark);
+}
+
+.holiday-worker.lukasz {
+  background: var(--lukasz);
+  color: var(--lukasz-dark);
+}
+
+.holiday-worker.both {
+  background: linear-gradient(135deg, var(--jacek) 0 50%, var(--lukasz) 50% 100%);
 }
 
 .calendar-toolbar,
@@ -303,6 +402,11 @@ main {
   outline-offset: -3px;
 }
 
+.day.selected {
+  outline: 3px solid var(--header-soft);
+  outline-offset: -3px;
+}
+
 .day-number {
   display: block;
   font-size: 1.05rem;
@@ -398,9 +502,18 @@ footer p {
 
   .status-main,
   .next-change,
+  .holiday-section,
   .calendar-section,
   .upcoming-section {
     padding: 18px;
+  }
+
+  .holiday-section {
+    grid-template-columns: 1fr;
+  }
+
+  .holiday-shortcuts {
+    grid-template-columns: 1fr;
   }
 
   .next-change {
@@ -440,6 +553,19 @@ footer p {
   }
 }
 
+@media (max-width: 500px) {
+  .header-inner {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 18px 0;
+  }
+
+  .header-actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
 @media (max-width: 430px) {
   .day {
     min-height: 58px;
@@ -455,4 +581,3 @@ footer p {
     background: rgba(23, 33, 41, 0.72);
   }
 }
-
